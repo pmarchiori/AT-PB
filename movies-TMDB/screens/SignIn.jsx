@@ -38,7 +38,7 @@ export default function SignIn() {
     if (error) {
       console.error("Erro no login:", error.message);
     } else {
-      //Alert.alert("Login realizado com sucesso!");
+      //Alert.alert("Log in successfull!");
       navigation.navigate("Home");
     }
     if (error) Alert.alert(error.message);
@@ -57,8 +57,12 @@ export default function SignIn() {
       password: password,
     });
 
-    if (error) Alert.alert(error.message);
-    if (!session) Alert.alert("Please check your inbox to confirm email!");
+    if (error) {
+      Alert.alert(error.message);
+    } else {
+      Alert.alert("Sign up successfull!");
+    }
+    // if (!session) Alert.alert("Please check your inbox to confirm email!");
     setLoading(false);
   }
 
