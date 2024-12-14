@@ -32,6 +32,8 @@ export default function Home() {
   const [topRated, setTopRated] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const navigation = useNavigation();
+
   useEffect(() => {
     getTrendingMovies();
     getUpcomingMovies();
@@ -54,15 +56,16 @@ export default function Home() {
     if (data && data.results) setTopRated(data.results);
   };
 
-  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.safeContainer}>
         <StatusBar />
         <View style={styles.iconContainer}>
-          <Bars3CenterLeftIcon size={30} strokeWidth={2} color="white" />
+          {/* Ícone do menu lateral */}
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <Bars3CenterLeftIcon size={30} strokeWidth={2} color="white" />
+          </TouchableOpacity>
           <Text style={styles.title}>Movies</Text>
-
           <TouchableOpacity onPress={() => navigation.navigate("Search")}>
             <MagnifyingGlassIcon size={30} strokeWidth={2} color="white" />
           </TouchableOpacity>
@@ -76,9 +79,7 @@ export default function Home() {
           contentContainerStyle={{ paddingBottom: 10 }}
         >
           {trending.length > 0 && <TrendingMovies data={trending} />}
-
           <MovieList title="Upcoming" data={upcoming} />
-
           <MovieList title="Top Rated" data={topRated} />
         </ScrollView>
       )}
