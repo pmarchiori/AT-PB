@@ -11,7 +11,6 @@ import Loading from "../components/Loading";
 
 export default function Favorites() {
   const navigation = useNavigation();
-
   const [isLoading, setIsLoading] = useState(true);
 
   return (
