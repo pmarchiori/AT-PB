@@ -20,7 +20,7 @@ export default function Favorites() {
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
             <Bars3CenterLeftIcon size={30} strokeWidth={2} color="white" />
           </TouchableOpacity>
-          <Text style={styles.title}>Movies</Text>
+          <Text style={styles.title}>Favorites</Text>
         </View>
       </SafeAreaView>
       {/* {isLoading ? (
@@ -30,9 +30,11 @@ export default function Favorites() {
       )} */}
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 10 }}
+        contentContainerStyle={styles.scrollContent}
       >
-        <Text style={styles.title}>Favorites</Text>
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>Nothing added yet.</Text>
+        </View>
       </ScrollView>
     </View>
   );
@@ -56,5 +58,18 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     fontWeight: "bold",
+  },
+  scrollContent: {
+    flexGrow: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  textContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    color: "gray",
+    fontSize: 16,
   },
 });

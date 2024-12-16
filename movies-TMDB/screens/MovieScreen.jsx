@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
+  Platform,
 } from "react-native";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -144,7 +145,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 20,
-    marginTop: 16,
+    marginTop: Platform.OS === "ios" ? 16 : 8,
   },
   moviePoster: {
     width,
@@ -157,29 +158,29 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   movieDetailsContainer: {
-    marginTop: -(height * 0.09),
+    marginTop: -(height * (Platform.OS === "ios" ? 0.09 : 0.08)),
   },
   movieTitle: {
     color: "white",
     textAlign: "center",
-    fontSize: 24,
+    fontSize: Platform.OS === "ios" ? 24 : 22,
     fontWeight: "bold",
   },
   movieDetailsText: {
     color: "grey",
     fontWeight: "600",
     textAlign: "center",
-    lineHeight: 35,
+    lineHeight: Platform.OS === "ios" ? 35 : 30,
   },
   movieGenresContainer: {
     flexDirection: "row",
     justifyContent: "center",
-    marginHorizontal: "12",
+    marginHorizontal: 12,
   },
   movieDescription: {
     color: "grey",
     marginHorizontal: 12,
     textAlign: "center",
-    marginTop: 12,
+    marginTop: Platform.OS === "ios" ? 12 : 10,
   },
 });

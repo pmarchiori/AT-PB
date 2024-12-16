@@ -9,6 +9,7 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
   Image,
+  Platform,
 } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
@@ -52,7 +53,9 @@ export default function SearchScreen() {
   const handleTextDebounce = useCallback(debounce(handleSearch, 400), []);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[styles.container, Platform.OS === "ios" && { paddingTop: 16 }]}
+    >
       <View style={styles.searchBarContainer}>
         <TextInput
           onChangeText={handleTextDebounce}
@@ -82,7 +85,12 @@ export default function SearchScreen() {
                   key={index}
                   onPress={() => navigation.push("Movie", item)}
                 >
-                  <View style={styles.posterContainer}>
+                  <View
+                    style={[
+                      styles.posterContainer,
+                      Platform.OS === "android" && { marginVertical: 10 },
+                    ]}
+                  >
                     <Image
                       style={styles.moviePoster}
                       source={{ uri: image185(item?.poster_path) }}
@@ -122,6 +130,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "grey",
     borderRadius: 30,
+    ...Platform.select({
+      ios: {
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
   },
   searchBar: {
     paddingBottom: 10,

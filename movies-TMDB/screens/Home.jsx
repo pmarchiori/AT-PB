@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  Platform,
 } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
@@ -61,7 +62,6 @@ export default function Home() {
       <SafeAreaView style={styles.safeContainer}>
         <StatusBar />
         <View style={styles.iconContainer}>
-          {/* Ícone do menu lateral */}
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
             <Bars3CenterLeftIcon size={30} strokeWidth={2} color="white" />
           </TouchableOpacity>
@@ -93,13 +93,15 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(23,23,23,1)",
   },
   safeContainer: {
-    marginBottom: 3,
+    marginBottom: Platform.OS === "android" ? 3 : 10,
+    paddingTop: Platform.OS === "ios" ? 10 : 0,
   },
   iconContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     margin: 12,
+    marginTop: Platform.OS === "ios" ? 20 : 10,
   },
   title: {
     color: "white",
